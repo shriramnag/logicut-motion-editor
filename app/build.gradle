@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+}
+
+def keystorePath = System.getenv("KEYSTORE_PATH") ?: "../keystore/release.keystore"
+def keystorePassword = System.getenv("KEYSTORE_PASSWORD") ?: "logicut10002"
+def keyAliasEnv = System.getenv("KEY_ALIAS") ?: "logicut_release_key"
+def keyPasswordEnv = System.getenv("KEY_PASSWORD") ?: "logicut10002"
+
+def keystoreFile = file(keystorePath)
+
+android {
+    namespace 'com.logicut.studiopro'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.logicut.studiopro"
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 10002
+        versionName "1.0.002"
+    }
+
+    signingConfigs {
+        release {
+            storeFile keystoreFile
+            storePassword keystorePassword
+            keyAlias keyAliasEnv
+            keyPassword keyPasswordEnv
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+}
