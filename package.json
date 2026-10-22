@@ -1,0 +1,11 @@
+{
+  "name": "logicut-studio-pro",
+  "version": "1.0.005",
+  "description": "LogiCut Studio Pro v1.0.005 — Hybrid React, Python, Node.js, HTML5 Canvas & Android Java Motion Graphics Video Editor",
+  "main": "backend-nodejs/server.js",
+  "scripts": {
+    "start": "node backend-nodejs/server.js",
+    "python-engine": "python3 backend-python/python_motion_engine.py"
+  },
+  "license": "MIT"
+}
